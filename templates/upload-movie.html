@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="icon" type="image/png" href="../static/uploads/logo.jpg">
+		<title>Upload Movie</title>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary rounded-bottom-3">
+				<div class="container-fluid">
+					<img src="../static/uploads/logo.jpg" alt="LOGO" width="30" height="30">
+				  <a class="navbar-brand ms-2" href="#">Cinemaster</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href = "{{url_for('profile')}}">Profile</a>
+					  </li>
+					  {% if session['username'] == 'admin' %}
+						<a class="nav-link" href = "{{url_for('uploadmovie')}}">Upload Movie</a>
+					  {% endif %}
+					</ul>
+					<form class="d-flex" role="search">
+					  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+					  <button class="btn btn-outline-success" type="submit">Search</button>
+					</form>
+				  </div>
+				</div>
+			  </nav>
+			{% include 'includes/alert.html' %}
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4 form-container p-4 mt-5">
+					<h2 class="text-center mb-4">Upload Movie</h2>
+					<form
+						class="register-form"
+						method="post"
+						action="{{ url_for('uploadmovie') }}"
+						enctype="multipart/form-data"
+					>
+						<div class="mb-3">
+							<input type="text" class="form-control" placeholder="Title" required name="title" />
+						</div>
+						<div class="mb-3">
+							<label for="price" class="price">Price</label>
+							<input type="number" class="form-control" placeholder="90" required name="price" />
+						</div>
+						<div class="mb-3">
+							<textarea
+								type=""
+								class="form-control"
+								placeholder="Description"
+								required
+								name="description"
+							></textarea>
+						</div>
+						<div class="mb-3">
+							<input
+								type="file"
+								accept="image/*"
+								class="form-control"
+								placeholder="Title"
+								required
+								name="image"
+							/>
+						</div>
+						<button type="submit" class="btn btn-primary w-100">Upload</button>
+					</form>
+				</div>
+			</div>
+			<footer class="footer rounded-top-5 fixed-bottom container">
+				<div class="logo">
+					<img src="../static/uploads/logo.jpg" alt="LOGO" width="60" height="60">
+					<h2>Cinemaster</h2>
+				</div>
+				<div class="contact">
+					Developed By : <br>
+					Esraa Mahmoud 
+				</div>
+			</footer>
+		</div>
+		<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
+	</body>
+</html>

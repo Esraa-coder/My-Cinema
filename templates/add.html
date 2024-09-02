@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="icon" type="image/png" href="../static/uploads/logo.jpg">
+		<title>{{ user[1] }} - Profile</title>
+	</head>
+	<body>
+		<div class="container">
+			<nav class="navbar navbar-expand-lg bg-body-tertiary rounded-bottom-3">
+				<div class="container-fluid">
+					<img src="../static/uploads/logo.jpg" alt="LOGO" width="30" height="30">
+				  <a class="navbar-brand ms-2" href="#">Cinemaster</a>
+				  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				  </button>
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					  <li class="nav-item">
+						<a class="nav-link active" aria-current="page" href="{{url_for('index')}}">Home</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href = "{{url_for('profile')}}">Profile</a>
+					  </li>
+					  {% if session['username'] == 'admin' %}
+						<a class="nav-link" href = "{{url_for('uploadmovie')}}">Upload Movie</a>
+					  {% endif %}
+					</ul>
+					<form class="d-flex" role="search" action ="{{url_for('search')}}">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search_input">
+						<button class="btn btn-outline-success" type="submit" name="search">Search</button>
+					  </form>
+				  </div>
+				</div>
+			  </nav>
+			{% include 'includes/alert.html' %}
+			<div class="row justify-content-center">
+				<div class="col-md-6 col-lg-4 form-container p-4 mt-5 me-1">
+					<div class="row">
+						<form class="col" action="{{ url_for('balance_input')}}" method="POST">
+							<h2>Deposit</h2>
+							<h3>Please Enter The Amount: </h3><br>
+							<input type="number" placeholder="90" class="p-2" name="input-balance"><br><br>
+							<p>Your Balance : <b> ${{ user[3] }} </b></p>
+							<button type="submit" id ="balance_input" class="btn btn-primary rounded-4">Deposit The Amount</button>
+						</form>
+					</div>
+				</div>
+			</div>
+			<footer class="footer rounded-top-5 fixed-bottom container">
+				<div class="logo">
+					<img src="../static/uploads/logo.jpg" alt="LOGO" width="60" height="60">
+					<h2>Cinemaster</h2>
+				</div>
+				<div class="contact">
+					Developed By : <br>
+					Esraa Mahmoud 
+				</div>
+			</footer>
+		</div>
+		<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+		<script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
+	</body>
+</html>

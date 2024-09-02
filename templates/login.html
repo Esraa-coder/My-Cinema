@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="icon" type="image/png" href="../static/uploads/logo.jpg">
+		<title>Login Page</title>
+	</head>
+	<body>
+			<div class="container">
+				{% include 'includes/alert.html' %}
+				<div class="row justify-content-center">
+					<div class="col-md-6 col-lg-4 form-container p-4 mt-5">
+						<h2 class="text-center mb-4">Login</h2>
+						<form class="login-form" method="post" accept="/login">
+							<div class="mb-3">
+								<input type="text" class="form-control" placeholder="Username" required name="username" />
+							</div>
+							<div class="mb-3">
+								<input
+									type="password"
+									class="form-control"
+									placeholder="Password"
+									required
+									name="password"
+								/>
+							</div>
+							<button type="submit" class="btn btn-primary w-100">Login</button>
+						</form>
+					</div>
+				</div>
+				<footer class="footer rounded-top-5 fixed-bottom container">
+					<div class="logo">
+					  <img
+						src="../static/uploads/logo.jpg"
+						alt="LOGO"
+						width="60"
+						height="60"
+					  />
+					  <h2>Cinemaster</h2>
+					</div>
+					<div class="contact">
+					  Developed By : <br />
+					  Esraa Mahmoud 
+					</div>
+				  </footer>
+			</div>
+			
+			<script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+			<script src="{{ url_for('static', filename='js/close-all-alerts.js') }}"></script>
+	</body>
+</html>
